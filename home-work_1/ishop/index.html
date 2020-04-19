@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>home-work_1</title>
+</head>
+<body>
+    <div id="app_ishop">
+        
+    </div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src=./MyIshop.js></script>
+    <link type="text/css" rel="stylesheet" href="./MyIshop.css">
+
+    <script>
+
+        var shopName = 'Гиппо';
+        var productInfoArr = [
+            {
+                productName: 'Манго',
+                code: 1,
+                cost: 8,
+                picture: 'https://i.ibb.co/pPCzvG3/pexels-photo-3885948.jpg',
+                balance: 6
+            },
+            {
+                productName: 'Огурец',
+                code: 2,
+                cost: 2,
+                picture: 'https://i.ibb.co/pPCzvG3/pexels-photo-3885948.jpg',
+                balance: 12
+            },
+            {
+                productName: 'Ананас',
+                code: 3,
+                cost: 10,
+                picture: 'https://i.ibb.co/pPCzvG3/pexels-photo-3885948.jpg',
+                balance: 20
+            },
+        ];
+
+        ReactDOM.render (
+            React.createElement(MyIshop, {shopName: shopName, productInfo: productInfoArr}), document.getElementById('app_ishop')
+        );
+
+    </script>
+</body>
+</html>
