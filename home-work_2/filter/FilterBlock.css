@@ -1,0 +1,12 @@
+.TextBlock {
+    height: 100px;
+    width: 300px;
+    border: 1px solid gray;
+    margin-top: 20px;
+    overflow-y: scroll;
+    border: 1px solid black;
+}
+
+.TextBlock p {
+    margin: 0;
+}
