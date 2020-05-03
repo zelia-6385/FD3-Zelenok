@@ -19,7 +19,10 @@ var MyIshop = React.createClass({
         });
         return React.DOM.div({className: 'my-ishop'},
             React.DOM.div({className: 'my-ishop__name'}, this.props.shopName),
-            React.DOM.table({className:'my-ishop__product-info-table'}, productRows)
+            React.DOM.table({className: 'my-ishop__product-info-table'},
+                React.DOM.tbody({className:'my-ishop__product-info-tbody'}, productRows)
+            )
+
         );
     }
 })
