@@ -6,107 +6,72 @@ const FilterBlock = React.createClass({
         listArr: React.PropTypes.array.isRequired,
     },
 
-    getState(callback) {
-        this.setState((prevState) => {
-            callback(prevState);
-        })
-    },
-
-    sortTextValue: function(EO) {
-
-        // EO.persist();
-
-        let listCodeArrFilter = this.props.listArr.filter(elem => elem.indexOf(EO.target.value) !== -1);
-
-        let listCodeArrFilterSort = listCodeArrFilter.slice().sort();
-        
-        // this.setState({
-        //     listCodeArr: listCodeArrFilter,
-        //     inputValue: EO.target.value,
-        // });
-
-        if(this.state.isTrue) {
-
-            this.setState({
-                listCodeArr: listCodeArrFilterSort,
-                listCodeArrСopy: listCodeArrFilter,
-                inputValue: EO.target.value,
-            });
-
-        } else {
-
-            this.setState({
-                listCodeArr: listCodeArrFilter,
-                listCodeArrСopy: listCodeArrFilter,
-                inputValue: EO.target.value,
-            });
-
+    getInitialState: function() {
+        return {
+            listCodeArr: this.props.listArr,
+            filterStr: '',
+            isSort: false,
         }
-
-        // this.setState(() => {
-            
-        //     if(this.state.isTrue) {
-                
-        //         return {
-        //             listCodeArr: listCodeArrFilter.sort(),
-        //             listCodeArrСopy: listCodeArrFilter,
-        //             inputValue: EO.target.value,
-        //         }
-        //     } else {
-
-        //         return {
-        //             listCodeArr: listCodeArrFilter,
-        //             listCodeArrСopy: listCodeArrFilter,
-        //             inputValue: EO.target.value,
-        //         }
-        //     }
-        // });
-    },
-
-    sortList: function() {
-
-        if(!this.state.isTrue) {
-
-            let listCodeArrClone = this.state.listCodeArr.slice();
-          
-            let listCodeArrSort = this.state.listCodeArr.slice().sort();
-
-            this.setState({ 
-                listCodeArr: listCodeArrSort,
-                listCodeArrCopy: listCodeArrClone,
-                isTrue: true,
-            });
-
-        } else {
-
-            let listCodeArrUnsort = this.state.listCodeArrCopy.slice();
-
-            this.setState({ 
-                listCodeArr: listCodeArrUnsort,
-                listCodeArrCopy: [],
-                isTrue: false,
-            });
-        }
-        
     },
 
     resetList: function() {
 
         this.setState({
             listCodeArr: this.props.listArr,
-            listCodeArrCopy: [],
-            inputValue: '',
-            isTrue: false,
+            filterStr: '',
+            isSort: false,
         });
     },
 
-    getInitialState: function() {
-        return {
-            listCodeArr: this.props.listArr,
-            listCodeArrCopy: [],
-            inputValue: '',
-            isTrue: false,
+    sortFilterList: function(EO) {
+
+        this.state.filterStr = EO.target.value;
+
+        if(this.state.filterStr && this.state.isSort) {
+
+            this.setState({
+                listCodeArr: this.props.listArr.slice().filter(elem => elem.indexOf(this.state.filterStr) !== -1).sort(),
+                filterStr: EO.target.value,    
+            });
+
+        } else if (this.state.filterStr) {
+
+            this.setState({
+                listCodeArr: this.props.listArr.slice().filter(elem => elem.indexOf(this.state.filterStr) !== -1),
+                filterStr: EO.target.value,     
+            });
+
+        } else if (this.state.isSort) {
+
+            this.setState({
+                listCodeArr: this.props.listArr.slice().sort(),
+                filterStr: EO.target.value,     
+            });
+
+        } else {
+
+            this.setState({
+                listCodeArr: this.props.listArr,
+                filterStr: EO.target.value,     
+            });
         }
+    },
+
+    sortCheckbox: function() {
+        
+        if (this.state.isSort) {
+
+            this.setState({
+                listCodeArr: this.props.listArr.slice().filter(elem => elem.indexOf(this.state.filterStr) !== -1),
+                isSort: !this.state.isSort,
+            })
+        } else {
+    
+            this.setState({
+                listCodeArr: this.props.listArr.slice().filter(elem => elem.indexOf(this.state.filterStr) !== -1).sort(),
+                isSort: !this.state.isSort,
+            })
+        }  
     },
 
     render: function() {
@@ -118,8 +83,8 @@ const FilterBlock = React.createClass({
         );
 
         return React.DOM.div({className: 'FilterBlock'},
-            React.DOM.input({type: 'checkbox', onClick: this.sortList, checked: this.state.isTrue}),
-            React.DOM.input({type: 'text', value: this.state.inputValue, onChange: this.sortTextValue}),
+            React.DOM.input({type: 'checkbox', onClick: this.sortCheckbox, checked: this.state.isSort}),
+            React.DOM.input({type: 'text', value: this.state.filterStr, onChange: this.sortFilterList}),
             React.DOM.input({type: 'button', value: 'Сброс', onClick: this.resetList}),
             React.DOM.div({className: 'TextBlock'}, listCode),
         );
