@@ -1,0 +1,23 @@
+[
+    {
+        "productName": "Манго",
+        "code": 1,
+        "cost": 8,
+        "picture": "https://i.ibb.co/pPCzvG3/pexels-photo-3885948.jpg",
+        "balance": 6
+    },
+    {
+        "productName": "Огурец",
+        "code": 2,
+        "cost": 2,
+        "picture": "https://i.ibb.co/pPCzvG3/pexels-photo-3885948.jpg",
+        "balance": 12
+    },
+    {
+        "productName": "Ананас",
+        "code": 3,
+        "cost": 10,
+        "picture": "https://i.ibb.co/pPCzvG3/pexels-photo-3885948.jpg",
+        "balance": 20
+    }
+]

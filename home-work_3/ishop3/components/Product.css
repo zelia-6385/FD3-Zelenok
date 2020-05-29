@@ -1,0 +1,40 @@
+.product-row__colored {
+    background-color: yellowgreen;
+}
+
+.product-row > td {
+    text-align: center;
+    border: 1px solid black;
+    height: 150px; 
+    font-size: 30px;
+}
+
+.product-row__cost,
+.product-row__balance {
+    background-color: #dfdfdf;
+}
+
+.product-row__picture {
+    width: 180px;
+}
+
+.product-row__picture > img {
+    display: block;
+    height: 120px;
+    width: 120px;
+    margin: auto;
+}
+
+.product-row__button > button{
+    width:  100%;
+    height: 100%;
+    border: 2px solid black;
+    font-size: 30px;
+    outline: none;
+}
+
+.product-row__button > button:hover {
+    background-color: #dfdfdf;
+    transform: scale(0.98);
+    cursor: pointer;
+} 
