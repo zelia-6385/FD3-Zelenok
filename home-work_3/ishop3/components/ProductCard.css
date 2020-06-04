@@ -1,15 +1,50 @@
 .product-card {
-    margin-top: 50px;
+    margin-top: 10px;
     border: 1px solid black;
     max-width: 500px;
+    padding: 20px;
 }
 
 .product-card__title {
     font-size: 30px;
     font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.product-card__row {
+    font-size: 20px;
+}
+
+.product-card__row + .product-card__row {
+    margin-top: 10px;
 }
 
 .product-card__row span:first-child {
-    font-size: 20px;
     margin-right: 10px;
+}
+
+.product-card__row label {
+    display: inline-block;
+    min-width: 70px;
+}
+
+.product-card__input {
+    margin: 0 10px;
+}
+
+.product-card__validation {
+    color: red;
+}
+
+.product-card__controls {
+    margin-top: 20px;
+}
+
+.product-card__controls > button {
+    margin-right: 10px;
+}
+
+.product-card__button-disabled {
+    opacity: .7;
+    pointer-events: none;
 }

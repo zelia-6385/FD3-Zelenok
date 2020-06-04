@@ -14,6 +14,11 @@ class Product extends React.Component {
         balance: PropTypes.number.isRequired,
         cbChangeIsChoose: PropTypes.func.isRequired,
         cbChangeIsExist: PropTypes.func.isRequired,
+        cbShowEditCard: PropTypes.func.isRequired,
+        isValidName: PropTypes.bool.isRequired,
+        isValidPrice: PropTypes.bool.isRequired,
+        isValidURL: PropTypes.bool.isRequired,
+        isValidQuantity: PropTypes.bool.isRequired,
     }
 
     highlightRow = () => {
@@ -22,7 +27,24 @@ class Product extends React.Component {
 
     deleteRow =  (EO) => {
         EO.stopPropagation();
-        this.props.cbChangeIsExist(this.props.code);
+        if (this.checkIsFinishEditCard()) {
+            return
+        } else {
+            this.props.cbChangeIsExist(this.props.code);
+        }  
+    };
+
+    editCard = (EO) => {
+        EO.stopPropagation();
+        if (this.checkIsFinishEditCard()) {
+            return
+        } else {
+            this.props.cbShowEditCard(this.props.code);
+        } 
+    };
+
+    checkIsFinishEditCard = () => {
+        return this.props.isValidName || this.props.isValidPrice || this.props.isValidURL || this.props.isValidQuantity
     };
 
     render() {
@@ -43,7 +65,8 @@ class Product extends React.Component {
                     {this.props.balance + ' ' + 'шт.'}
                 </td>
                 <td className='product-row__button'>
-                    <button type="button">
+                    <button type="button"
+                        onClick={this.editCard}>
                         {'Edit'}
                     </button>
                 </td>

@@ -14,3 +14,16 @@
     font-size: 36px;
     border: 1px solid black;
 }
+
+.my-ishop__new-product {
+    padding: 15px;
+    font-size: 30px;
+    margin-top: 10px;
+    border: 2px solid black;
+}
+
+.my-ishop__new-product:hover {
+    background-color: #dfdfdf;
+    transform: scale(0.98);
+    cursor: pointer;
+}
