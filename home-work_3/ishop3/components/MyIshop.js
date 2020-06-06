@@ -21,11 +21,19 @@ class MyIshop extends React.Component {
         contentPrice: null,
         contentURL: '',
         contentQuantity: null,
+
+        comparedName: '',
+        comparedPrice: null,
+        comparedURL: '',
+        comparedQuantity: null,
+
+        isEditCard: false,
+        isNewCard: false,
     };
 
     changeIsChoose = (code) => {
 
-        if(!!this.state.contentName || !!this.state.contentPrice || !!this.state.contentURL || !!this.state.contentQuantity) {
+        if(!this.compareFields()) {
             return
         } else {
             
@@ -34,12 +42,16 @@ class MyIshop extends React.Component {
                 this.setState({
                     code: code,
                     mode: 1,
+                    isEditCard: false,
+                    isNewCard: false,
                 });
 
             } else {
 
                 this.setState({
                     code: code,
+                    isEditCard: false,
+                    isNewCard: false,
                 });
             }
         }
@@ -67,33 +79,55 @@ class MyIshop extends React.Component {
 
     };
 
-    showEditCard = (code) => {
+    showEditCard = (code, productName, cost, picture, balance) => {
 
         if(this.state.mode != 2) {
             this.setState({
                 mode: 2,
                 code: code,
-            });
+                contentName: productName,
+                contentPrice: +cost,
+                contentURL: picture,
+                contentQuantity: +balance,
+                isEditCard: !this.state.isEditCard,
+            }, this.saveFields);
         } else {
             this.setState({
                 code: code,
-            });
+                contentName: productName,
+                contentPrice: +cost,
+                contentURL: picture,
+                contentQuantity: +balance,
+                isEditCard: !this.state.isEditCard,
+            }, this.saveFields);
         }
     };
 
     showNewCard = () => {
 
-        if (!!this.state.contentName || !!this.state.contentPrice || !!this.state.contentURL || !!this.state.contentQuantity) {
+        if (this.state.isEditCard || this.state.isNewCard) {
             return
         } else {
             if(this.state.mode != 3) {
                 this.setState ({
                     mode: 3,
                     code: this.state.productInfo.length + 1,
+                    contentName: '',
+                    contentPrice: null,
+                    contentURL: '',
+                    contentQuantity: null,
+                    isEditCard: false,
+                    isNewCard: !this.state.isNewCard,
                 });
             } else {
                 this.setState ({
                     code: this.state.productInfo.length + 1,
+                    contentName: '',
+                    contentPrice: null,
+                    contentURL: '',
+                    contentQuantity: null,
+                    isEditCard: false,
+                    isNewCard: !this.state.isNewCard,
                 });
             }
         }
@@ -143,7 +177,8 @@ class MyIshop extends React.Component {
             contentPrice: null,
             contentURL: '',
             contentQuantity: null,
-        });
+            isEditCard: !this.state.isEditCard,
+        }, this.saveFields);
     };
 
     createProduct = (code) => {
@@ -165,8 +200,9 @@ class MyIshop extends React.Component {
             contentPrice: null,
             contentURL: '',
             contentQuantity: null,
-        });
-    }
+            isNewCard: !this.state.isNewCard,
+        }, this.saveFields);
+    };
 
     resetCodeValue = () => {
         this.setState({
@@ -175,8 +211,39 @@ class MyIshop extends React.Component {
             contentPrice: null,
             contentURL: '',
             contentQuantity: null,
-        });
+            isEditCard: false,
+            isNewCard: false,
+        }, this.saveFields);
     };
+
+    checkValid = () => {
+        let checkResult;
+
+        if (this.state.contentName && this.state.contentPrice && this.state.contentURL && this.state.contentQuantity) {
+            checkResult = true;
+        } else {
+            checkResult = false;
+        }
+
+        return checkResult;
+    };
+
+    saveFields = () => {
+        this.setState({
+            comparedName: this.state.contentName,
+            comparedPrice: this.state.contentPrice,
+            comparedURL: this.state.contentURL,
+            comparedQuantity: this.state.contentQuantity,
+        })
+    };
+
+    compareFields = () => {
+        if (this.state.contentName === this.state.comparedName && this.state.contentPrice === this.state.comparedPrice && this.state.contentURL === this.state.comparedURL && this.state.contentQuantity === this.state.comparedQuantity) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     render() {
 
@@ -188,13 +255,13 @@ class MyIshop extends React.Component {
                 cost={elem.cost}
                 picture={elem.picture}
                 balance={elem.balance}
+                isEditCard={this.state.isEditCard}
+                isNewCard={this.state.isNewCard}
                 cbChangeIsChoose={this.changeIsChoose}
                 cbChangeIsExist={this.changeIsExist}
                 cbShowEditCard={this.showEditCard}
-                isValidName={!!this.state.contentName}
-                isValidPrice={!!this.state.contentPrice}
-                isValidURL={!!this.state.contentURL}
-                isValidQuantity={!!this.state.contentQuantity}
+                cbCheckValid={this.checkValid}
+                cbCompareFields={this.compareFields}
             /> 
         );
 
@@ -228,10 +295,12 @@ class MyIshop extends React.Component {
                     cbPutInputValue={this.putInputValue}
                     cbResetCodeValue={this.resetCodeValue}
                     cbEditProduct={this.editProduct}
-                    isValidName={!!this.state.contentName}
-                    isValidPrice={!!this.state.contentPrice}
-                    isValidURL={!!this.state.contentURL}
-                    isValidQuantity={!!this.state.contentQuantity}
+                    cbCheckValid={this.checkValid}
+
+                    contentName={this.state.contentName}
+                    contentPrice={+this.state.contentPrice}
+                    contentURL={this.state.contentURL}
+                    contentQuantity={+this.state.contentQuantity}
                  />}
                  {this.state.code && this.state.mode === 3 && < ProductCard
                     code={this.state.code}
@@ -239,10 +308,12 @@ class MyIshop extends React.Component {
                     cbPutInputValue={this.putInputValue}
                     cbResetCodeValue={this.resetCodeValue}
                     cbCreateProduct={this.createProduct}
-                    isValidName={!!this.state.contentName}
-                    isValidPrice={!!this.state.contentPrice}
-                    isValidURL={!!this.state.contentURL}
-                    isValidQuantity={!!this.state.contentQuantity}
+                    cbCheckValid={this.checkValid}
+
+                    contentName={this.state.contentName}
+                    contentPrice={+this.state.contentPrice}
+                    contentURL={this.state.contentURL}
+                    contentQuantity={+this.state.contentQuantity}
                  />} 
             </div>
         );

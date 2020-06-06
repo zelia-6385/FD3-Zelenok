@@ -12,13 +12,12 @@ class Product extends React.Component {
         cost: PropTypes.number.isRequired,
         picture: PropTypes.string.isRequired,
         balance: PropTypes.number.isRequired,
+        isEditCard: PropTypes.bool.isRequired,
+        isNewCard: PropTypes.bool.isRequired,
         cbChangeIsChoose: PropTypes.func.isRequired,
         cbChangeIsExist: PropTypes.func.isRequired,
         cbShowEditCard: PropTypes.func.isRequired,
-        isValidName: PropTypes.bool.isRequired,
-        isValidPrice: PropTypes.bool.isRequired,
-        isValidURL: PropTypes.bool.isRequired,
-        isValidQuantity: PropTypes.bool.isRequired,
+        cbCompareFields: PropTypes.func.isRequired,
     }
 
     highlightRow = () => {
@@ -27,7 +26,7 @@ class Product extends React.Component {
 
     deleteRow =  (EO) => {
         EO.stopPropagation();
-        if (this.checkIsFinishEditCard()) {
+        if (this.props.isEditCard || this.props.isNewCard) {
             return
         } else {
             this.props.cbChangeIsExist(this.props.code);
@@ -36,15 +35,15 @@ class Product extends React.Component {
 
     editCard = (EO) => {
         EO.stopPropagation();
-        if (this.checkIsFinishEditCard()) {
+        if (!this.checkIfChangeEditCard() || this.props.isNewCard) {
             return
         } else {
-            this.props.cbShowEditCard(this.props.code);
+            this.props.cbShowEditCard(this.props.code, this.props.productName, this.props.cost, this.props.picture, this.props.balance);
         } 
     };
 
-    checkIsFinishEditCard = () => {
-        return this.props.isValidName || this.props.isValidPrice || this.props.isValidURL || this.props.isValidQuantity
+    checkIfChangeEditCard = () => {
+        return this.props.cbCompareFields();
     };
 
     render() {

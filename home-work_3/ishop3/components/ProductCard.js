@@ -16,10 +16,17 @@ class ProductCard extends React.Component {
         cbResetCodeValue: PropTypes.func.isRequired,
         cbEditProduct: PropTypes.func,
         cbCreateProduct: PropTypes.func,
-        isValidName: PropTypes.bool.isRequired,
-        isValidPrice: PropTypes.bool.isRequired,
-        isValidURL: PropTypes.bool.isRequired,
-        isValidQuantity: PropTypes.bool.isRequired,
+        cbCheckValid: PropTypes.func,
+
+        // isValidName: PropTypes.bool.isRequired,
+        // isValidPrice: PropTypes.bool.isRequired,
+        // isValidURL: PropTypes.bool.isRequired,
+        // isValidQuantity: PropTypes.bool.isRequired,
+
+        contentName: PropTypes.string.isRequired,
+        contentPrice: PropTypes.number.isRequired,
+        contentURL: PropTypes.string.isRequired,
+        contentQuantity: PropTypes.number.isRequired,
     }
 
     changeInput = (EO) => {
@@ -27,18 +34,12 @@ class ProductCard extends React.Component {
     };
 
     checkIsValidCard = () => {
-        return this.props.isValidName && this.props.isValidPrice && this.props.isValidURL && this.props.isValidQuantity
+        return this.props.cbCheckValid();
     };
 
     pushEditCard = () => {
         this.props.cbEditProduct(this.props.code);
     };
-
-    onSubmit = (EO) => {
-        EO.preventDefault();
-        const form = EO.target;
-        form.reset();
-    }
 
     pushNewCard = () => {
         this.props.cbCreateProduct(this.props.code);
@@ -83,8 +84,7 @@ class ProductCard extends React.Component {
                                 {'Please, fill the field'}
                             </span>
 
-            result = <form className="product-card"
-                            onSubmit={this.onSubmit}>
+            result = <div className="product-card">
                         <div className="product-card__title">
                             {this.props.mode == 2 ? 'Edit existing Product' + "\u00a0" + this.props.code : 'Add new Product' + "\u00a0" + this.props.code}
                         </div>
@@ -94,20 +94,23 @@ class ProductCard extends React.Component {
                             </label>
                             <input className="product-card__input"
                                 id="product-name"
+                                type="text"
+                                value={this.props.contentName}
                                 onChange={this.changeInput}/>
                             {/* Сообщение о валидации */}
-                            {!this.props.isValidName && validField}
+                            {!this.props.contentName && validField}
                         </div>
                         <div className="product-card__row">
                             <label htmlFor="product-price">
                                 {'Price'}  
                             </label>
                             <input className="product-card__input"
-                                type="number"
                                 id="product-price"
+                                type="number"
+                                value={this.props.contentPrice}
                                 onChange={this.changeInput}/>
                             {/* Сообщение о валидации */}
-                            {!this.props.isValidPrice && validField}
+                            {!this.props.contentPrice && validField}
                         </div>
                         <div className="product-card__row">
                             <label htmlFor="product-url">
@@ -115,34 +118,37 @@ class ProductCard extends React.Component {
                             </label>
                             <input className="product-card__input"
                                 id="product-url"
+                                type="text"
+                                value={this.props.contentURL}
                                 onChange={this.changeInput}/>
                             {/* Сообщение о валидации */}
-                            {!this.props.isValidURL && validField}
+                            {!this.props.contentURL && validField}
                         </div>
                         <div className="product-card__row">
                             <label htmlFor="product-quantity">
                                 {'Quantity'}  
                             </label>
                             <input className="product-card__input"
-                                type="number"
                                 id="product-quantity"
+                                type="number"
+                                value={this.props.contentQuantity}
                                 onChange={this.changeInput}/>
                             {/* Сообщение о валидации */}
-                            {!this.props.isValidQuantity && validField}
+                            {!this.props.contentQuantity && validField}
                         </div>
                         <div className="product-card__controls">
                             {this.props.mode == 2 ?
                                 <button className={ !this.checkIsValidCard() ?
                                     'product-card__button-disabled' : 
                                     undefined }
-                                    type="submit"
+                                    type="button"
                                     onClick={this.pushEditCard}>
                                     {'Сохранить'}
                                 </button> :
                                 <button className={ !this.checkIsValidCard() ?
                                     'product-card__button-disabled' : 
                                     undefined }
-                                    type="submit"
+                                    type="button"
                                     onClick={this.pushNewCard}>
                                     {'Добавить'}
                                 </button>
@@ -153,7 +159,7 @@ class ProductCard extends React.Component {
                                 {'Отмена'}
                             </button>
                         </div>
-                    </form>
+                    </div>
         }
 
         return ( result );
