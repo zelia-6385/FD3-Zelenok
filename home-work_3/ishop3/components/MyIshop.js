@@ -29,7 +29,7 @@ class MyIshop extends React.Component {
 
         isEditCard: false,
         isNewCard: false,
-        isURL: false,
+        // isURL: false,
     };
 
     changeIsChoose = (code) => {
@@ -133,7 +133,7 @@ class MyIshop extends React.Component {
                     contentQuantity: null,
                     isEditCard: false,
                     isNewCard: !this.state.isNewCard,
-                    isURL: false,
+                    // isURL: false,
                 });
             }
         }
@@ -209,7 +209,7 @@ class MyIshop extends React.Component {
                 contentURL: '',
                 contentQuantity: null,
                 isNewCard: !this.state.isNewCard,
-                isURL: true,
+                // isURL: true,
             }, this.saveFields);
         }
     };
@@ -229,7 +229,7 @@ class MyIshop extends React.Component {
     checkValid = () => {
         let checkResult;
 
-        if (this.state.contentName && this.state.contentPrice && this.state.contentURL && this.state.contentQuantity) {
+        if (this.state.contentName && this.state.contentPrice && this.state.contentURL && this.state.contentQuantity && this.checkRegularURL()) {
             checkResult = true;
         } else {
             checkResult = false;
@@ -327,7 +327,8 @@ class MyIshop extends React.Component {
                     cbResetCodeValue={this.resetCodeValue}
                     cbEditProduct={this.editProduct}
                     cbCheckValid={this.checkValid}
-                    isURL={this.state.isURL}
+                    // isURL={this.state.isURL}
+                    cbCheckRegularURL={this.checkRegularURL}
 
                     contentName={this.state.contentName}
                     contentPrice={+this.state.contentPrice}
@@ -341,7 +342,8 @@ class MyIshop extends React.Component {
                     cbResetCodeValue={this.resetCodeValue}
                     cbCreateProduct={this.createProduct}
                     cbCheckValid={this.checkValid}
-                    isURL={this.state.isURL}
+                    // isURL={this.state.isURL}
+                    cbCheckRegularURL={this.checkRegularURL}
 
                     contentName={this.state.contentName}
                     contentPrice={+this.state.contentPrice}

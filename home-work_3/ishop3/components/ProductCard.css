@@ -1,7 +1,7 @@
 .product-card {
     margin-top: 10px;
     border: 1px solid black;
-    max-width: 560px;
+    max-width: 650px;
     padding: 20px;
 }
 
@@ -34,6 +34,11 @@
 
 .product-card__validation {
     color: red;
+}
+
+.product-card__validation_url {
+    color: red;
+    display: inline-block;
 }
 
 .product-card__controls {

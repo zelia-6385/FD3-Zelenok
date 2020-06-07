@@ -17,7 +17,8 @@ class ProductCard extends React.Component {
         cbEditProduct: PropTypes.func,
         cbCreateProduct: PropTypes.func,
         cbCheckValid: PropTypes.func,
-        isURL: PropTypes.bool,
+        cbCheckRegularURL: PropTypes.func,
+        // isURL: PropTypes.bool,
 
         contentName: PropTypes.string.isRequired,
         contentPrice: PropTypes.number.isRequired,
@@ -33,9 +34,9 @@ class ProductCard extends React.Component {
         return this.props.cbCheckValid();
     };
 
-    // checkIsURL = () => {
-    //     return this.props.cbCheckRegularURL(EO.target.value);
-    // }
+    checkIsValidURL = (EO) => {
+        return this.props.cbCheckRegularURL();
+    };
 
     pushEditCard = () => {
         this.props.cbEditProduct(this.props.code);
@@ -124,9 +125,11 @@ class ProductCard extends React.Component {
                                 placeholder="https://i.ibb.co/"
                                 value={this.props.contentURL}
                                 onChange={this.changeInput}/>
-                            {/* Сообщение о валидации */}
-                            {!this.props.contentURL && validField}
-                            {!this.props.isURL && ' ' + 'CORRECTLY!'}
+                            <div className="product-card__validation_url">
+                                {/* Сообщение о валидации */}
+                                {!this.props.contentURL && validField}
+                                {!this.checkIsValidURL() && ' ' + 'CORRECTLY ONLY!'}
+                            </div>
                         </div>
                         <div className="product-card__row">
                             <label htmlFor="product-quantity">
