@@ -43,7 +43,7 @@ class ProductCard extends React.Component {
 
     pushNewCard = (EO) => {
         EO.preventDefault();
-        this.props.cbCreateProduct(this.props.code);
+        this.props.cbCreateProduct();
     }
 
     removeCard = () => {

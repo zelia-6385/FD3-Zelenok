@@ -106,6 +106,9 @@ class MyIshop extends React.Component {
 
     showNewCard = () => {
 
+        console.log(this.state.productInfo);
+        console.log(this.state.productInfo.length);
+
         if (this.state.isEditCard || this.state.isNewCard) {
             return
         } else {
@@ -184,13 +187,13 @@ class MyIshop extends React.Component {
         }, this.saveFields);
     };
 
-    createProduct = (code) => {
+    createProduct = () => {
 
         if (this.checkRegularURL()) {
             
             let product = {};
 
-            product.code = code;
+            product.code = this.state.productInfo[this.state.productInfo.length - 1].code + 1;
             product.productName = this.state.contentName;
             product.cost = +this.state.contentPrice;
             product.picture = this.state.contentURL;
@@ -304,11 +307,21 @@ class MyIshop extends React.Component {
                     NewProduct
                 </button>
                 {this.state.code && (this.state.mode === 1 || this.state.mode === 2) && < ProductCard
-                    code={this.state.productInfo[this.state.code - 1].code}
-                    productName={this.state.productInfo[this.state.code - 1].productName}
-                    cost={this.state.productInfo[this.state.code - 1].cost}
-                    picture={this.state.productInfo[this.state.code - 1].picture}
-                    balance={this.state.productInfo[this.state.code - 1].balance}
+                    code={this.state.productInfo.find( (elem) => {
+                        return (elem.code === this.state.code)
+                    }).code}
+                    productName={this.state.productInfo.find( (elem) => {
+                        return (elem.code === this.state.code)
+                    }).productName}
+                    cost={this.state.productInfo.find( (elem) => {
+                        return (elem.code === this.state.code)
+                    }).cost}
+                    picture={this.state.productInfo.find( (elem) => {
+                        return (elem.code === this.state.code)
+                    }).picture}
+                    balance={this.state.productInfo.find( (elem) => {
+                        return (elem.code === this.state.code)
+                    }).balance}
                     mode={this.state.mode}
                     cbPutInputValue={this.putInputValue}
                     cbResetCodeValue={this.resetCodeValue}
