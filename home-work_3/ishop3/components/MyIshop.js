@@ -29,6 +29,7 @@ class MyIshop extends React.Component {
 
         isEditCard: false,
         isNewCard: false,
+        isURL: false,
     };
 
     changeIsChoose = (code) => {
@@ -118,6 +119,7 @@ class MyIshop extends React.Component {
                     contentQuantity: null,
                     isEditCard: false,
                     isNewCard: !this.state.isNewCard,
+                    isURL: false,
                 });
             } else {
                 this.setState ({
@@ -128,6 +130,7 @@ class MyIshop extends React.Component {
                     contentQuantity: null,
                     isEditCard: false,
                     isNewCard: !this.state.isNewCard,
+                    isURL: false,
                 });
             }
         }
@@ -183,25 +186,29 @@ class MyIshop extends React.Component {
 
     createProduct = (code) => {
 
-        let product = {};
+        if (this.checkRegularURL()) {
+            
+            let product = {};
 
-        product.code = code;
-        product.productName = this.state.contentName;
-        product.cost = +this.state.contentPrice;
-        product.picture = this.state.contentURL;
-        product.balance = +this.state.contentQuantity;
+            product.code = code;
+            product.productName = this.state.contentName;
+            product.cost = +this.state.contentPrice;
+            product.picture = this.state.contentURL;
+            product.balance = +this.state.contentQuantity;
 
-        this.state.productInfo.push(product);
+            this.state.productInfo.push(product);
 
-        this.setState({
-            productInfo: this.state.productInfo,
-            code: null,
-            contentName: '',
-            contentPrice: null,
-            contentURL: '',
-            contentQuantity: null,
-            isNewCard: !this.state.isNewCard,
-        }, this.saveFields);
+            this.setState({
+                productInfo: this.state.productInfo,
+                code: null,
+                contentName: '',
+                contentPrice: null,
+                contentURL: '',
+                contentQuantity: null,
+                isNewCard: !this.state.isNewCard,
+                isURL: true,
+            }, this.saveFields);
+        }
     };
 
     resetCodeValue = () => {
@@ -227,6 +234,17 @@ class MyIshop extends React.Component {
 
         return checkResult;
     };
+
+    checkRegularURL = () => {
+        let regexp = /^((http|https|ftp):\/\/)(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)\//i;
+
+        let val = this.state.contentURL;
+
+        console.log(val);
+        console.log(regexp.test(val));
+
+        return regexp.test(val);
+    } 
 
     saveFields = () => {
         this.setState({
@@ -296,6 +314,7 @@ class MyIshop extends React.Component {
                     cbResetCodeValue={this.resetCodeValue}
                     cbEditProduct={this.editProduct}
                     cbCheckValid={this.checkValid}
+                    isURL={this.state.isURL}
 
                     contentName={this.state.contentName}
                     contentPrice={+this.state.contentPrice}
@@ -309,6 +328,7 @@ class MyIshop extends React.Component {
                     cbResetCodeValue={this.resetCodeValue}
                     cbCreateProduct={this.createProduct}
                     cbCheckValid={this.checkValid}
+                    isURL={this.state.isURL}
 
                     contentName={this.state.contentName}
                     contentPrice={+this.state.contentPrice}

@@ -17,11 +17,7 @@ class ProductCard extends React.Component {
         cbEditProduct: PropTypes.func,
         cbCreateProduct: PropTypes.func,
         cbCheckValid: PropTypes.func,
-
-        // isValidName: PropTypes.bool.isRequired,
-        // isValidPrice: PropTypes.bool.isRequired,
-        // isValidURL: PropTypes.bool.isRequired,
-        // isValidQuantity: PropTypes.bool.isRequired,
+        isURL: PropTypes.bool,
 
         contentName: PropTypes.string.isRequired,
         contentPrice: PropTypes.number.isRequired,
@@ -37,11 +33,16 @@ class ProductCard extends React.Component {
         return this.props.cbCheckValid();
     };
 
+    // checkIsURL = () => {
+    //     return this.props.cbCheckRegularURL(EO.target.value);
+    // }
+
     pushEditCard = () => {
         this.props.cbEditProduct(this.props.code);
     };
 
-    pushNewCard = () => {
+    pushNewCard = (EO) => {
+        EO.preventDefault();
         this.props.cbCreateProduct(this.props.code);
     }
 
@@ -118,11 +119,14 @@ class ProductCard extends React.Component {
                             </label>
                             <input className="product-card__input"
                                 id="product-url"
-                                type="text"
+                                type="url"
+                                pattern="/^((http|https|ftp):\/\/)(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)\//i"
+                                placeholder="https://i.ibb.co/"
                                 value={this.props.contentURL}
                                 onChange={this.changeInput}/>
                             {/* Сообщение о валидации */}
                             {!this.props.contentURL && validField}
+                            {!this.props.isURL && ' ' + 'CORRECTLY!'}
                         </div>
                         <div className="product-card__row">
                             <label htmlFor="product-quantity">
