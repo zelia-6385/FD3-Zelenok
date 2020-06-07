@@ -16,7 +16,7 @@ class MyIshop extends React.Component {
     state = {
         productInfo: this.props.productInfo,
         code: null,
-        mode: 2,
+        mode: 1,
         contentName: '',
         contentPrice: null,
         contentURL: '',
@@ -216,6 +216,7 @@ class MyIshop extends React.Component {
 
     resetCodeValue = () => {
         this.setState({
+            mode: 1,
             code: null,
             contentName: '',
             contentPrice: null,
@@ -276,6 +277,7 @@ class MyIshop extends React.Component {
                 cost={elem.cost}
                 picture={elem.picture}
                 balance={elem.balance}
+                mode={this.state.mode}
                 isEditCard={this.state.isEditCard}
                 isNewCard={this.state.isNewCard}
                 cbChangeIsChoose={this.changeIsChoose}
@@ -301,7 +303,11 @@ class MyIshop extends React.Component {
                         {productInfoCode}
                     </tbody>
                 </table>
-                <button className="my-ishop__new-product"
+                <button className={
+                    this.state.mode == 2 || this.state.mode == 3 ?
+                    "my-ishop__new-product_disabled my-ishop__new-product" :
+                    "my-ishop__new-product"
+                }
                     type="button"
                     onClick={this.showNewCard}>
                     NewProduct

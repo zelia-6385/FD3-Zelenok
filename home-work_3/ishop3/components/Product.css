@@ -37,4 +37,9 @@
     background-color: #dfdfdf;
     transform: scale(0.98);
     cursor: pointer;
-} 
+}
+
+.product-row__button-disabled {
+    opacity: .7;
+    pointer-events: none;
+}

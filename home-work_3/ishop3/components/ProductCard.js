@@ -34,7 +34,7 @@ class ProductCard extends React.Component {
         return this.props.cbCheckValid();
     };
 
-    checkIsValidURL = (EO) => {
+    checkIsValidURL = () => {
         return this.props.cbCheckRegularURL();
     };
 
@@ -122,7 +122,7 @@ class ProductCard extends React.Component {
                                 id="product-url"
                                 type="url"
                                 pattern="/^((http|https|ftp):\/\/)(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)\//i"
-                                placeholder="https://i.ibb.co/"
+                                placeholder="https://yandex.ru/"
                                 value={this.props.contentURL}
                                 onChange={this.changeInput}/>
                             <div className="product-card__validation_url">

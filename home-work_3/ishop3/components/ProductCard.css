@@ -50,6 +50,6 @@
 }
 
 .product-card__button-disabled {
-    opacity: .7;
-    pointer-events: none;
+    color: gray;
+    /* pointer-events: none; */
 }

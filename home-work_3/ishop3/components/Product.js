@@ -12,6 +12,7 @@ class Product extends React.Component {
         cost: PropTypes.number.isRequired,
         picture: PropTypes.string.isRequired,
         balance: PropTypes.number.isRequired,
+        mode: PropTypes.number.isRequired,
         isEditCard: PropTypes.bool.isRequired,
         isNewCard: PropTypes.bool.isRequired,
         cbChangeIsChoose: PropTypes.func.isRequired,
@@ -64,13 +65,21 @@ class Product extends React.Component {
                     {this.props.balance + ' ' + 'шт.'}
                 </td>
                 <td className='product-row__button'>
-                    <button type="button"
+                    <button className={
+                        this.props.mode == 3 ? 'product-card__button-disabled' :
+                        undefined
+                    }
+                        type="button"
                         onClick={this.editCard}>
                         {'Edit'}
                     </button>
                 </td>
                 <td className='product-row__button'>
-                    <button type='button'
+                    <button className={
+                        this.props.mode == 3 || this.props.mode == 2 ? 'product-card__button-disabled' :
+                        undefined
+                    }
+                        type='button'
                         onClick={this.deleteRow}>
                         {'Delete'}
                     </button>

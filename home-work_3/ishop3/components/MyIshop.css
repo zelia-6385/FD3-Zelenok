@@ -27,3 +27,8 @@
     transform: scale(0.98);
     cursor: pointer;
 }
+
+.my-ishop__new-product_disabled {
+    color: gray;
+    /* pointer-events: none; */
+}
