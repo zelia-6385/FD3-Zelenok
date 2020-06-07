@@ -173,6 +173,7 @@ class MyIshop extends React.Component {
 
         this.setState({
             productInfo: this.state.productInfo,
+            mode: 1,
             code: null,
             contentName: '',
             contentPrice: null,
@@ -198,6 +199,7 @@ class MyIshop extends React.Component {
 
             this.setState({
                 productInfo: this.state.productInfo,
+                mode: 1,
                 code: null,
                 contentName: '',
                 contentPrice: null,
