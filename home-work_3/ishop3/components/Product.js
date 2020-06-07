@@ -28,7 +28,6 @@ class Product extends React.Component {
     deleteRow =  (EO) => {
         EO.stopPropagation();
         if (this.props.isEditCard || this.props.isNewCard) {
-            console.log(1);
             return
         } else {
             this.props.cbChangeIsExist(this.props.code);
@@ -67,7 +66,7 @@ class Product extends React.Component {
                 </td>
                 <td className='product-row__button'>
                     <button className={
-                        this.props.mode == 3 ? 'product-card__button-disabled' :
+                        (this.props.mode == 3 || !this.checkIfChangeEditCard()) ? 'product-card__button-disabled' :
                         undefined
                     }
                         type="button"

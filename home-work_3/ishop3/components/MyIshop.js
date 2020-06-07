@@ -324,7 +324,6 @@ class MyIshop extends React.Component {
                     cbResetCodeValue={this.resetCodeValue}
                     cbEditProduct={this.editProduct}
                     cbCheckValid={this.checkValid}
-                    // isURL={this.state.isURL}
                     cbCheckRegularURL={this.checkRegularURL}
 
                     contentName={this.state.contentName}
@@ -339,7 +338,6 @@ class MyIshop extends React.Component {
                     cbResetCodeValue={this.resetCodeValue}
                     cbCreateProduct={this.createProduct}
                     cbCheckValid={this.checkValid}
-                    // isURL={this.state.isURL}
                     cbCheckRegularURL={this.checkRegularURL}
 
                     contentName={this.state.contentName}
