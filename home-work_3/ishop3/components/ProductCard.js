@@ -18,8 +18,6 @@ class ProductCard extends React.Component {
         cbCreateProduct: PropTypes.func,
         cbCheckValid: PropTypes.func,
         cbCheckRegularURL: PropTypes.func,
-        // isURL: PropTypes.bool,
-
         contentName: PropTypes.string.isRequired,
         contentPrice: PropTypes.number.isRequired,
         contentURL: PropTypes.string.isRequired,

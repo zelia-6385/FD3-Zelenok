@@ -29,7 +29,6 @@ class MyIshop extends React.Component {
 
         isEditCard: false,
         isNewCard: false,
-        // isURL: false,
     };
 
     changeIsChoose = (code) => {
@@ -59,9 +58,9 @@ class MyIshop extends React.Component {
 
     };
 
-    showCode = () => {
-        console.log(this.state.code);
-    };
+    // showCode = () => {
+    //     console.log(this.state.code);
+    // };
 
     changeIsExist = (code) => {
 
@@ -90,7 +89,7 @@ class MyIshop extends React.Component {
                 contentPrice: +cost,
                 contentURL: picture,
                 contentQuantity: +balance,
-                isEditCard: !this.state.isEditCard,
+                isEditCard: true,
             }, this.saveFields);
         } else {
             this.setState({
@@ -99,15 +98,12 @@ class MyIshop extends React.Component {
                 contentPrice: +cost,
                 contentURL: picture,
                 contentQuantity: +balance,
-                isEditCard: !this.state.isEditCard,
+                isEditCard: true,
             }, this.saveFields);
         }
     };
 
     showNewCard = () => {
-
-        console.log(this.state.productInfo);
-        console.log(this.state.productInfo.length);
 
         if (this.state.isEditCard || this.state.isNewCard) {
             return
@@ -133,7 +129,6 @@ class MyIshop extends React.Component {
                     contentQuantity: null,
                     isEditCard: false,
                     isNewCard: !this.state.isNewCard,
-                    // isURL: false,
                 });
             }
         }
@@ -209,7 +204,6 @@ class MyIshop extends React.Component {
                 contentURL: '',
                 contentQuantity: null,
                 isNewCard: !this.state.isNewCard,
-                // isURL: true,
             }, this.saveFields);
         }
     };
@@ -243,9 +237,6 @@ class MyIshop extends React.Component {
         let regexp = /^((http|https|ftp):\/\/)(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)\//i;
 
         let val = this.state.contentURL;
-
-        console.log(val);
-        console.log(regexp.test(val));
 
         return regexp.test(val);
     } 

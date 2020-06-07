@@ -28,6 +28,7 @@ class Product extends React.Component {
     deleteRow =  (EO) => {
         EO.stopPropagation();
         if (this.props.isEditCard || this.props.isNewCard) {
+            console.log(1);
             return
         } else {
             this.props.cbChangeIsExist(this.props.code);
