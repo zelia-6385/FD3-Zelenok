@@ -21,12 +21,11 @@ class BR2JSX extends React.Component {
             
             if(!brRegExp.test(resultArray[i]) && i < resultArray.length) {
 
-                if(i === resultArray.length - 1) {
-                    resultArrayCode.push(resultArray[i]);
-                } else {
-                    resultArrayCode.push(resultArray[i]);
+                resultArrayCode.push(resultArray[i]);
+
+                if(i !== resultArray.length - 1) {
                     resultArrayCode.push(<br key={i}/>);
-                }   
+                }  
             }
         }
 
