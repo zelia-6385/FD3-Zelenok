@@ -1,0 +1,11 @@
+.BR2JSX {
+    padding: 30px 0;
+    margin-bottom: 50px;
+    width: 200px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
