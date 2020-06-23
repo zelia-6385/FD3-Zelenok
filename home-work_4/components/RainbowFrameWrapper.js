@@ -20,11 +20,7 @@ class RainbowFrameWrapper extends React.Component {
             );
         }
 
-        return (
-            <RainbowFrame>
-                {"Hello!"}
-            </RainbowFrame>
-        );
+        return 'Hello'
  
     }
 
