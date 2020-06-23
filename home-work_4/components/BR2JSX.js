@@ -17,25 +17,33 @@ class BR2JSX extends React.Component {
 
         let resultArrayCode = [];
 
+        for(let i = 0; i < resultArray.length; i++) {
+            // resultArray[i].setAttribute("key", i);
+            
+            if(!brRegExp.test(resultArray[i]) && i < resultArray.length) {
 
-        for (let item of resultArray) {
-
-            if(!brRegExp.test(item)) {
-
-                resultArrayCode.push(item);
-                resultArrayCode.push(<br/>);
+                if(i > resultArray.length - 2) {
+                    resultArrayCode.push(resultArray[i]);
+                } else {
+                    resultArrayCode.push(resultArray[i]);
+                    resultArrayCode.push(<br key={i+1}/>);
+                    i++;
+                }   
             }
-
         }
 
-        // resultArrayCode = resultArrayCode.map((elem, index) => {
-        //     if(typeof elem === "string") {
-        //         console.log(elem);
-        //         return <span key={index}>{elem}</span>
-        //     }
+        console.log(resultArrayCode);
 
-        //     return elem
-        // })
+        resultArrayCode = resultArrayCode.map((elem, index) => {
+            if(typeof elem === "string") {
+                console.log(elem);
+                return <span key={index}>{elem}</span>
+            }
+
+            return elem
+        })
+
+        console.log(resultArrayCode);
 
         return (
             <div className="BR2JSX">{resultArrayCode}</div>
