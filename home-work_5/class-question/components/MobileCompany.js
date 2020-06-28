@@ -93,14 +93,15 @@ class MobileCompany extends React.Component {
     };
 
     updateBalance = (clientId, delta) => {
-        let newClients = this.state.clients;
-        newClients.map( c => {
-            if(c.id == clientId) {
-                c.balance += delta;
-            }
-        });
-        console.log(newClients);
-        this.setState({clients: newClients});
+         // let newClients = this.state.clients;
+         let newClients = [...this.state.clients];
+         newClients.forEach( c => {
+             if(c.id == clientId) {
+                 c.balance += delta;
+             }
+         });
+         console.log(newClients);
+         this.setState({clients: newClients});
     };
 
     updateBalance1 = () => {
