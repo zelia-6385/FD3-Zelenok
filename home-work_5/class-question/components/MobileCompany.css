@@ -1,0 +1,25 @@
+.MobileCompany {
+    width: 180px;
+}
+
+.MobileCompanyName {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.MobileCompanyClients {
+    margin: 10px 0;
+    display: table;
+    width: 100%;
+    border: 1px solid black;
+    background-color: yellowgreen;
+}
+
+.MobileClient {
+    display: table-row;
+}
+
+.MobileClientFIO,
+.MobileClientBalance {
+    display: table-cell;
+}
