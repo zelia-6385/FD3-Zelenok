@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`работа showAllButton 1`] = `
+exports[`работа showBlockedButton 1`] = `
 <div
   className="MobileCompany"
 >
@@ -188,7 +188,7 @@ exports[`работа showAllButton 1`] = `
 </div>
 `;
 
-exports[`работа showAllButton 2`] = `
+exports[`работа showBlockedButton 2`] = `
 <div
   className="MobileCompany"
 >
@@ -233,6 +233,39 @@ exports[`работа showAllButton 2`] = `
         <th>
           Удалить
         </th>
+      </tr>
+      <tr>
+        <td>
+          Григорьев
+        </td>
+        <td>
+          Григорий
+        </td>
+        <td>
+          Григорьевич
+        </td>
+        <td>
+          -280
+        </td>
+        <td
+          className="MobileClient_red"
+        >
+          not active
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Редактировать"
+          />
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Удалить"
+          />
+        </td>
       </tr>
     </tbody>
   </table>

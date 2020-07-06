@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 
 import MobileCompany from '../components/MobileCompany';
 
-test('работа showAllButton', () => {
+test('работа editClientButton', () => {
 
     let clientArr = [
         {id:101, info: {fam:"Иванов", im:"Иван", otch:"Иванович", balance:200}},
@@ -22,17 +22,19 @@ test('работа showAllButton', () => {
     let componentTree = component.toJSON();
     expect(componentTree).toMatchSnapshot();
 
-    const showAllButton = component.root.find( el => {
-        if(el.props.value === 'Все') {
-            console.log(el.props);
-        }
-        
-        return el.props.value === 'Все';
-    });
-    
-    showAllButton.props.onClick();
+    const editClientButtons = component.root.findAll( el => el.props.value === 'Редактировать');
+
+    // editClientButtons.forEach( elem => {
+    //     elem.props.onClick();
+
+    //     componentTree = component.toJSON();
+    //     expect(componentTree).toMatchSnapshot();
+
+    // });
+
+    editClientButtons[0].props.onClick();
 
     componentTree = component.toJSON();
     expect(componentTree).toMatchSnapshot();
-
+    
 });

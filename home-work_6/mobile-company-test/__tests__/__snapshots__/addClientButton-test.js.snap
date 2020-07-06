@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`работа showAllButton 1`] = `
+exports[`работа addClientButton 1`] = `
 <div
   className="MobileCompany"
 >
@@ -188,7 +188,7 @@ exports[`работа showAllButton 1`] = `
 </div>
 `;
 
-exports[`работа showAllButton 2`] = `
+exports[`работа addClientButton 2`] = `
 <div
   className="MobileCompany"
 >
@@ -234,6 +234,138 @@ exports[`работа showAllButton 2`] = `
           Удалить
         </th>
       </tr>
+      <tr>
+        <td>
+          Иванов
+        </td>
+        <td>
+          Иван
+        </td>
+        <td>
+          Иванович
+        </td>
+        <td>
+          200
+        </td>
+        <td
+          className="MobileClient_green"
+        >
+          active
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Редактировать"
+          />
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Удалить"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Сидоров
+        </td>
+        <td>
+          Сидор
+        </td>
+        <td>
+          Сидорович
+        </td>
+        <td>
+          230
+        </td>
+        <td
+          className="MobileClient_green"
+        >
+          active
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Редактировать"
+          />
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Удалить"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Петров
+        </td>
+        <td>
+          Петр
+        </td>
+        <td>
+          Петрович
+        </td>
+        <td>
+          180
+        </td>
+        <td
+          className="MobileClient_green"
+        >
+          active
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Редактировать"
+          />
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Удалить"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Григорьев
+        </td>
+        <td>
+          Григорий
+        </td>
+        <td>
+          Григорьевич
+        </td>
+        <td>
+          -280
+        </td>
+        <td
+          className="MobileClient_red"
+        >
+          not active
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Редактировать"
+          />
+        </td>
+        <td>
+          <input
+            onClick={[Function]}
+            type="button"
+            value="Удалить"
+          />
+        </td>
+      </tr>
     </tbody>
   </table>
   <input
@@ -241,5 +373,82 @@ exports[`работа showAllButton 2`] = `
     type="button"
     value="Добавить клиента"
   />
+  <div
+    className="MobileClientCard"
+  >
+    <div
+      className="MobileClientCard__title"
+    >
+      Add new Client 105
+    </div>
+    <div
+      className="MobileClientCard__row"
+    >
+      <label
+        htmlFor="client-surname"
+      >
+        Surname: 
+      </label>
+      <input
+        id="client-surname"
+        type="text"
+      />
+    </div>
+    <div
+      className="MobileClientCard__row"
+    >
+      <label
+        htmlFor="client-name"
+      >
+        Name: 
+      </label>
+      <input
+        id="client-name"
+        type="text"
+      />
+    </div>
+    <div
+      className="MobileClientCard__row"
+    >
+      <label
+        htmlFor="client-second-name"
+      >
+        Second Name: 
+      </label>
+      <input
+        id="client-second-name"
+        type="text"
+      />
+    </div>
+    <div
+      className="MobileClientCard__row"
+    >
+      <label
+        htmlFor="client-balance"
+      >
+        Balance: 
+      </label>
+      <input
+        id="client-balance"
+        type="text"
+      />
+    </div>
+    <div
+      className="MobileClientCard__controls"
+    >
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Добавить
+      </button>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Отмена
+      </button>
+    </div>
+  </div>
 </div>
 `;

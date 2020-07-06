@@ -234,19 +234,6 @@ class MobileCompany extends React.PureComponent {
     render() {
         console.log("MobileCompany render");
 
-        // console.log(this.state.clients);
-
-        // let clientArr = [
-        //     {id:101, info: {fam:"Иванов", im:"Иван", otch:"Иванович", balance:200}},
-        //     {id:102, info: {fam:"Сидоров", im:"Сидор", otch:"Сидорович", balance:230}},
-        //     {id:103, info: {fam:"Петров", im:"Петр", otch:"Петрович", balance:180}},
-        //     {id:104, info: {fam:"Григорьев", im:"Григорий", otch:"Григорьевич", balance:-280}},
-        // ];
-        
-        // let clientsCode = clientArr.map( client => {
-        //     return <MobileClient key={client.id} id={client.id} info={client.info}/>
-        // });
-
         let clientsCode = this.state.clients.map( client => {
             return <MobileClient key={client.id} id={client.id} info={client.info}/>
         });
